@@ -13,11 +13,29 @@ public:
         
     }
     
+        bool ff(int ind,int n,vector<int>&nums,vector<bool>&dp){
+        dp[0]=true;
+        // if(ind>=n) return true;
+        
+        for(int i=1;i<n;i++){
+            for(int j=i-1;j>=0;j--){
+                if(dp[j]==true && j+nums[j] >=i) {
+                dp[i]=true;
+                break;
+                }
+            }
+        }
+            return dp[n-1];
+        
+    }
+
+    
     bool canJump(vector<int>& nums) {
         
         int n=nums.size();
-        vector<int>dp(n+1,-1);
-        return f(0,n,nums,dp);
+        // vector<int>dp(n+1,-1);
+        vector<bool>dp(n,false);
+        return ff(0,n,nums,dp);
         
         
 //         int maxJump=0;
