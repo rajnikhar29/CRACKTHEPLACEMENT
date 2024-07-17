@@ -20,7 +20,7 @@ public:
             }
 
         }
-                    nums=ans;
+        nums=ans;
 
         
     }
