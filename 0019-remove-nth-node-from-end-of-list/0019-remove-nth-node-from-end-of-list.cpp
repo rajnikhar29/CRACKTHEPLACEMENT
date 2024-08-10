@@ -16,17 +16,19 @@ public:
         ListNode*fast=temp;
         ListNode*slow=temp;
         
-        
+        //kha tk jana h wo set krle
         for(int i=1;i<=n;i++){
             fast=fast->next;
             
         }
         
+        //iterate now
         while(fast->next != NULL){
             fast = fast->next;
             slow = slow->next;
         }
         
+        // adjusting pointers
         slow->next=slow->next->next;
         
         return temp->next;
