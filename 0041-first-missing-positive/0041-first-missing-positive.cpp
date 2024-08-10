@@ -1,7 +1,7 @@
 class Solution {
 public:
     int firstMissingPositive(vector<int>& nums) {
-        // approach1 sort an check count
+         // approach1 sort an check count
         // sort(nums.begin(),nums.end());
         // int count=1;
         // for(int i=0;i<nums.size();i++){
