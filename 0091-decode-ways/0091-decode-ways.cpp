@@ -1,44 +1,22 @@
 class Solution {
 public:
-    int f(string s, int index, vector<int> dp) {
-        if (index == s.length())
-            return 1;
-        if (s[index] == '0')
-            return 0;
 
-        if (dp[index] != -1)
-            return dp[index];
-
-        int ways = f(s, index + 1, dp); // decode current digit
-
-        if (index + 1 < s.length() && (s[index] == '1' ||
-            (s[index] == '2' && s[index + 1] <= '6'))) {
-            ways += f(s, index + 2, dp);
-        }
-        return dp[index] = ways;
+int f(int i,string &s,int&n,vector<int>&dp){
+    if(i==n) return 1;
+    if(s[i]=='0')return 0;
+    if(dp[i]!=-1) return dp[i];
+    int result=f(i+1,s,n,dp);
+    if(i+1<n){//out of bound nhi ho rha
+    if(s[i]=='1'|| s[i]=='2' && s[i+1] <='6'){
+        result+=f(i+2,s,n,dp);
     }
-    int ff(string s, vector<int> dp){
-       int n=s.length();
-       if(n==0||s[0]=='0') return 0;
-
-       dp[0]=1;
-       dp[1]=1;
-
-       for(int index=1;index<n;index++){
-        int ways = dp[index+1]; // decode current digit
-
-        if (index + 1 < s.length() && (s[index] == '1' ||
-            (s[index] == '2' && s[index + 1] <= '6'))) {
-            ways += dp[index + 2];
-        }
-        dp[0]=dp[1];
-        dp[1]=ways;
-       }
-       return dp[1];
     }
+    return dp[i]= result;
+}
     int numDecodings(string s) {
-        int n = s.length();
-        vector<int> dp(n, 0);
-        return f(s, 0, dp);
+        int n=s.size();
+        vector<int>dp(n+1,-1);
+        int ans=f(0,s,n,dp);
+        return ans;
     }
 };
